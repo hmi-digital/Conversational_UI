@@ -1,0 +1,116 @@
+@charset "utf-8";
+
+/* CSS Document */
+
+
+/* =============================================================================
+	Media Queries 
+========================================================================== */
+
+@media only screen and (min-width: 320px) and (max-width: 768px) {
+    /* ------------ Header wrap css started ------------ */
+    body {
+        margin-top: 0;
+    }
+    .container {
+        padding: 0;
+    }
+    .container > .col-md-12 {
+        width: 100%;
+        padding: 0;
+    }
+    .speech {
+        width: 100%;
+    }
+    #welcome-wrapper .welcome-container.col-lg-5 {
+        margin-left: 0;
+    }
+    #welcome-wrapper .welcome-container.col-xs-12,
+    #welcome-wrapper .col-sm-12 {
+        margin: 0 15px;
+        width: calc(100% - 30px);
+    }
+    .user-profile-pic {
+        display: none;
+    }
+    .nano-container {
+        width: 100%;
+        margin-left: 0;
+    }
+    #header .user-name {
+        margin: 23px 0 0;
+    }
+    #task-details {
+        height: auto !important;
+    }
+    /* ------------ Header wrap css End ------------ */
+    /* ------------ Thumbnail css started ------------ */
+}
+
+@media only screen and (min-width: 769px) and (max-width: 991px) {
+    #welcome-wrapper .welcome-container.col-xs-12,
+    #welcome-wrapper .col-sm-12 {
+        margin: 0 15px;
+        width: calc(100% - 30px);
+    }
+}
+
+/*@media only screen and (min-width: 992px) and (max-width: 1280px) {
+    #welcome-wrapper .welcome-container.col-lg-5 {
+        margin-left: 30%;
+    }
+}
+*/
+
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+    .media-block .media-body {
+        /*width: 79%;*/
+        width: 76%;
+        /*new*/
+        padding-left: 0;
+    }
+    .media-block .media-body.speech-right {
+        padding-right: 0;
+    }
+    .lima-bot-logo {
+        margin: 4px 5px 0 5px;
+    }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 360px) {
+    .chat-wrapper .panel-heading .col-xs-10 {
+        padding-right: 0;
+    }
+    .chat-wrapper .panel-heading .col-xs-2 {
+        padding-right: 0;
+    }
+    .media-block .media-body {
+        padding-right: 0;
+    }
+    .panel-heading .panel-title {
+        font-size: 1.3em;
+    }
+    .panel-heading h5 {
+        font-size: 0.9em;
+    }
+    .media-block .media-body.speech-right,
+    .media-block .media-body.pad-hor {
+        padding-left: 0;
+    }
+    .col-xs-10.padding-left-0 {
+        padding-left: 15px;
+    }
+}
+
+@media (min-width: 992px) {
+    .col-md-offset-3 {
+        margin-left: 28%;
+    }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1135px) {
+    .nano-container {
+        width: 94%;
+        margin-left: 3%;
+    }
+}

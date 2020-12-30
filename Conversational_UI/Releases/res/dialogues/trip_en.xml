@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<n:dialog xsi:schemaLocation="http://cto.net/hmi schema1.xsd" 
+	xmlns:n="http://cto.net/hmi/1.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="trip" company="trial" version="1.0">
+	<startTaskName>start</startTaskName>
+	<globalLanguage>en</globalLanguage>
+	<useSODA>true</useSODA>
+	<allowSwitchTasks>true</allowSwitchTasks>
+	<allowOverAnswering>true</allowOverAnswering>
+	<allowDifferentQuestion>true</allowDifferentQuestion>
+	<allowCorrection>false</allowCorrection>
+	<failureAttempts>2</failureAttempts>
+	<tasks>
+		<!--#DO NOT CHANGE System Task. Acts as a starting task for all the conversations -->
+		<task name="start" label="Initial Task">
+			<itos>
+				<ito name="welcome">
+					<AQD>
+						<type>
+							<answerType>open_ended</answerType>
+						</type>
+					</AQD>
+					<fallbackQuestion>How may I help you? | What can I do for you?</fallbackQuestion>
+					<required>true</required>
+				</ito>
+			</itos>
+			<action>
+				<groovyAction>
+					<resultMappings>
+						<resultMapping>
+							<message/>
+							<redirectToTask>exitTask</redirectToTask>
+							<resultValue>1</resultValue>
+							<resultVarName>action</resultVarName>
+						</resultMapping>
+					</resultMappings>
+					<returnAnswer>true</returnAnswer>
+					<utteranceTemplate></utteranceTemplate>
+					<code>
+						<![CDATA[					
+						executionResults.put("action","1");
+						]]>
+					</code>
+				</groovyAction>
+			</action>
+		</task>
+		<task name="getTripInformation" label="Book ticket" role="user">
+			<itos>
+				<ito name="getDestinationCity" label="City Name">
+					<AQD>
+						<type>
+							<answerType>sys.location.city</answerType>
+						</type>
+					</AQD>
+					<fallbackQuestion>where do you want to go?|what city do you want to travel?</fallbackQuestion>
+					<clarifyQuestion>Please provide me with the correct city name?</clarifyQuestion>
+					<required>true</required>
+				</ito>
+				<ito name="getNumberOfPersons" label="No of persons">
+					<AQD>
+						<type>
+							<answerType>custom.slider_1</answerType>
+						</type>
+					</AQD>
+					<fallbackQuestion>for how many persons?</fallbackQuestion>
+					<clarifyQuestion>Please provide me with the correct number of persons?</clarifyQuestion>
+					<required>true</required>
+				</ito>
+				<ito name="getStartDate" label="Start Date">
+					<AQD>
+						<type>
+							<answerType>sys.temporal.date</answerType>
+						</type>
+					</AQD>
+					<fallbackQuestion>when do you want to leave?</fallbackQuestion>
+					<clarifyQuestion>Please provide me correct information e.g. tomorrow, friday etc.?</clarifyQuestion>
+					<required>true</required>
+				</ito>
+				<ito name="getClass" label="Class">
+					<AQD>
+						<type>
+							<answerType>custom.item_1</answerType>
+						</type>
+					</AQD>
+					<fallbackQuestion>which class do you want to travel?</fallbackQuestion>
+					<clarifyQuestion>Is it business , economic or first?</clarifyQuestion>
+					<required>true</required>
+				</ito>
+			</itos>
+			<action>
+				<groovyAction>
+					<returnAnswer>true</returnAnswer>
+					<utteranceTemplate>Hey %loginUser_ , this trip to %getDestinationCity costs #price Dollars.</utteranceTemplate>
+					<code><![CDATA[
+                            executionResults.put("price","255")
+                            ]]>
+					</code>
+				</groovyAction>
+			</action>
+		</task>
+		<task name="getWeatherInformation" label="Weather information">
+			<itos>
+				<ito name="getDestinationCity" label="Weather information">
+					<AQD>
+						<type>
+							<answerType>sys.location.city</answerType>
+						</type>
+					</AQD>
+					<fallbackQuestion>for which city do you want to know the weather?</fallbackQuestion>
+					<required>true</required>
+					<useContext>true</useContext>
+					<clearContext>true</clearContext>
+				</ito>
+			</itos>
+			<action>
+				<httpAction>
+					<returnAnswer>true</returnAnswer>
+					<utteranceTemplate>The temperature in %getDestinationCity is #result degrees.</utteranceTemplate>
+					<method>get</method>
+					<params>q=%getDestinationCity&amp;mode=xml&amp;units=metric&amp;APPID=706120eb0f11f2ebf8584dadb9bad3d6</params>
+					<url>http://api.openweathermap.org/data/2.5/weather</url>
+					<xpath>/current/temperature/@value</xpath>
+					<jpath></jpath>
+				</httpAction>
+			</action>
+			<followup>
+				<ito name="anotherOne" label="Another City">
+					<AQD>
+						<type>
+							<answerType>sys.decision</answerType>
+						</type>
+					</AQD>
+					<fallbackQuestion>do you want to know about other cities?</fallbackQuestion>
+					<required>true</required>
+				</ito>
+				<answerMapping>
+					<item key="YES">getWeatherInformation</item>
+				</answerMapping>
+			</followup>
+		</task>
+		<task name="getWikipediaCityInfo" label="City information">
+			<itos>
+				<ito name="getWikiCity" label="City Name">
+					<AQD>
+						<type>
+							<answerType>sys.location.city</answerType>
+						</type>
+					</AQD>
+					<fallbackQuestion>what city do you want to know more about?</fallbackQuestion>
+					<required>true</required>
+				</ito>
+			</itos>
+			<action>
+				<httpAction>
+					<returnAnswer>true</returnAnswer>
+					<utteranceTemplate>#result</utteranceTemplate>
+					<method>get</method>
+					<params>format=json&amp;action=query&amp;prop=extracts&amp;explaintext&amp;exsentences=1&amp;titles=%getWikiCity</params>
+					<url>http://en.wikipedia.org/w/api.php</url>
+					<xpath></xpath>
+					<jpath>$..extract</jpath>
+				</httpAction>
+			</action>
+			<followup>
+				<ito name="anotherOne" label="Another City">
+					<AQD>
+						<type>
+							<answerType>sys.decision</answerType>
+						</type>
+					</AQD>
+					<fallbackQuestion>do you want to know about other cities?</fallbackQuestion>
+					<required>true</required>
+				</ito>
+				<answerMapping>
+					<item key="YES">getWikipediaCityInfo</item>
+				</answerMapping>
+			</followup>
+		</task>
+		<!--#DO NOT CHANGE System Task. Invoked when user explicitly wants to cancel the task -->
+		<task name="cancelTask" label="Cancel">
+			<followup>
+				<ito name="cancelDecision" label="Option">
+					<AQD>
+						<type>
+							<answerType>sys.decision</answerType>
+						</type>
+					</AQD>
+					<fallbackQuestion>do you want to cancel the task?</fallbackQuestion>
+					<required>true</required>
+				</ito>
+				<answerMapping>
+					<item key="YES">start</item>
+				</answerMapping>
+			</followup>
+			<action>
+				<groovyAction>
+					<returnAnswer>false</returnAnswer>
+					<utteranceTemplate></utteranceTemplate>
+					<code></code>
+				</groovyAction>
+			</action>
+		</task>
+		<!--#DO NOT CHANGE System Task. Invoked whenever there is two consecutive failed attempts in answering ITO -->
+		<task name="helpTask">
+			<itos>
+				<ito name="helpDecision" label="Option">
+					<AQD>
+						<type>
+							<answerType>sys.decision</answerType>
+						</type>
+					</AQD>
+					<fallbackQuestion>Seems you are not clear on this. Say Yes if you want to cancel this task or No to continue !</fallbackQuestion>
+					<required>true</required>
+				</ito>
+			</itos>
+			<action>
+				<groovyAction>
+					<resultMappings>
+						<resultMapping>
+							<message>Continuing with last conversation... </message>
+							<redirectToTask></redirectToTask>
+							<resultValue>2</resultValue>
+							<resultVarName>action</resultVarName>
+						</resultMapping>
+						<resultMapping>
+							<message>OK, restarting... </message>
+							<redirectToTask>start</redirectToTask>
+							<resultValue>1</resultValue>
+							<resultVarName>action</resultVarName>
+						</resultMapping>
+					</resultMappings>
+					<returnAnswer>true</returnAnswer>
+					<utteranceTemplate></utteranceTemplate>
+					<code><![CDATA[
+					String option=new String(frame.get("helpDecision"));
+					Integer action = new Integer(1);
+                    if (option.matches("(?i)^.*?\\b(yes|ya|ok)\\b.*?")){
+				        action = 1;
+                    }
+				    else if (option.matches("(?i)^.*?\\b(no|cancel)\\b.*?")){
+				        action = 2;
+                    }       
+                    executionResults.put("action",action.toString());
+					]]>
+					</code>
+				</groovyAction>
+			</action>
+		</task>
+		<!--#DO NOT CHANGE System Task. Invoked whenever number of failed attempts exceeds ALLOWED_FAILURE_ATTEMPTS -->
+		<task name="handoverTask">
+			<itos>
+				<ito name="handoverDecision" label="Option">
+					<AQD>
+						<type>
+							<answerType>sys.decision</answerType>
+						</type>
+					</AQD>
+					<fallbackQuestion>Do you need any agent assistance, say Yes to chat with our agent or to restart, say No to continue !</fallbackQuestion>
+					<required>true</required>
+				</ito>
+			</itos>
+			<action>
+				<groovyAction>
+					<resultMappings>
+						<resultMapping>
+							<message>OK, We will continue... </message>
+							<redirectToTask></redirectToTask>
+							<resultValue>2</resultValue>
+							<resultVarName>action</resultVarName>
+						</resultMapping>
+						<resultMapping>
+							<message>OK, We will restart... </message>
+							<redirectToTask>start</redirectToTask>
+							<resultValue>1</resultValue>
+							<resultVarName>action</resultVarName>
+						</resultMapping>
+					</resultMappings>
+					<returnAnswer>true</returnAnswer>
+					<utteranceTemplate></utteranceTemplate>
+					<code><![CDATA[
+					String option=new String(frame.get("handoverDecision"));
+					Integer action = new Integer(1);
+                    if (option.matches("(?i)^.*?\\b(yes|ya|ok)\\b.*?")){
+				        action = 1;
+                    }
+				    else if (option.matches("(?i)^.*?\\b(no|cancel)\\b.*?")){
+				        action = 2;
+                    }       
+                    executionResults.put("action",action.toString());
+					]]>
+					</code>
+				</groovyAction>
+			</action>
+		</task>
+		<!--#DO NOT CHANGE System Task. Invoked whenever user says bye , bye bye or exit at start task -->
+		<task name="exitTask">
+			<followup>
+				<ito name="LogoutDecision" label="Logout">
+					<AQD>
+						<type>
+							<answerType>sys.decision</answerType>
+						</type>
+					</AQD>
+					<fallbackQuestion>do you want to logout?</fallbackQuestion>
+					<required>true</required>
+				</ito>
+				<answerMapping>
+					<item key="NO">start</item>
+				</answerMapping>
+			</followup>
+			<action>
+				<groovyAction>
+					<returnAnswer>false</returnAnswer>
+					<utteranceTemplate></utteranceTemplate>
+					<code></code>
+				</groovyAction>
+			</action>
+		</task>
+	</tasks>
+</n:dialog>

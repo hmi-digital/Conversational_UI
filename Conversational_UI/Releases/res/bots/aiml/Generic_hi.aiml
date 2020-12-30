@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+<category><pattern>नमस्ते</pattern>  <template>नमस्ते।</template> </category>
+<category><pattern>नमस्कार</pattern>  <template>नमस्ते।</template> </category>
+<category><pattern>शुभेच्छा</pattern>  <template>नमस्ते।</template> </category>
+<category><pattern>मैं अच्छा हूँ</pattern>  <template>सुनकर अच्छा लगा ।</template> </category>
+<category><pattern>मैं ठीक हूँ</pattern>  <template>सुनकर अच्छा लगा ।</template> </category>
+<category><pattern>शुभेच्छा</pattern>  <template>नमस्ते।</template> </category>
+<category><pattern>हाय,कैसा चल रहा है</pattern>  <template><random><li>अच्छा।</li><li>ठीक है।</li><li>महान।</li><li>बेहतर हो सकता था।</li><li>इतना महान नहीं।</li></random></template> </category>
+<category><pattern>आप कैसे हैं</pattern>  <template><random><li>अच्छा।</li><li>बहुत अच्छे धन्यवाद।</li><li>ठीक हूं और आप ?</li><li>मैं ठीक हूं, आपके क्या हाल हैं ?</li></random></template> </category>
+<category><pattern>आप  कैसे हो</pattern>  <template><random><li>अच्छा।</li><li>बहुत अच्छे धन्यवाद।</li><li>ठीक हूं और आप ?</li><li>मैं ठीक हूं, आपके क्या हाल हैं ?</li></random></template> </category>
+<category><pattern>आपसे मिलकर अच्छा लगा</pattern>  <template>धन्यवाद।</template> </category>
+<category><pattern>तुमसे मिलकर अच्छा लगा</pattern>  <template>धन्यवाद और आपको भी।</template> </category>
+<category><pattern>आप से मिल कर खुशी हुई</pattern>  <template>धन्यवाद और आपको भी।</template> </category>
+<category><pattern>तुम्हारे लिए सुबह अत्यंत शुभ हो</pattern>  <template>बहुत धन्यवाद।</template> </category>
+<category><pattern>क्या हो रहा है</pattern>  <template><random><li>बहुत ज्यादा नहीं।</li><li>ज्यादा नहीं तुम्हारा क्या हाल है ?</li><li>ज़्यादा कुछ नहीं।</li></random></template> </category>
+</aiml>

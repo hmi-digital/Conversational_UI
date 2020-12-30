@@ -1,0 +1,2 @@
+#DO NOT REMOVE THIS LINE - This pattern will check if there is a string followed by a numeric number e.g. "John 5436"
+\b^(\w+)\s(\d+)$\b

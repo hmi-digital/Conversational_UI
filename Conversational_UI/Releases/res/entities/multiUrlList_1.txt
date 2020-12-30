@@ -1,0 +1,5 @@
+#The item list will be populated from below URL properties
+URL_METHOD=GET
+URL=http://www.mocky.io/v2/5945fed6130000e81b5b6fde
+JPATH=$..list
+CACHE_DAYS=2
