@@ -1,2 +1,0 @@
-vuelo,aerolíneas,transportistas
-glucómetro,medidor de glucosa

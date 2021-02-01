@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+
+<category><pattern>NLGFILLen</pattern><template>   <random>   <li>And</li>  <li> </li> <li>Well,</li>      <li>OK,</li>      <li>Tell me,</li>   <li>Now tell me,</li>   <li>Can you please tell me,</li>  <li>Can you now please tell me,</li>    <li>Please tell me,</li>  <li>Now please tell me,</li>    </random>    </template></category>
+<category><pattern>NLGFILLhi</pattern><template>   <random>   <li>और</li>  <li> </li> <li>ठीक,</li>   <li>अच्छा,</li>	<li>मुझे बताओ,</li>   <li>अब मुझे बताओ,</li>      <li>क्या आप मुझे बता सकते हैं,</li>   <li>अब आप मुझे बताओ,</li>  <li>अब बोलो,</li> <li>कृपया क्या आप मुझे बता सकते हैं,</li>   </random>    </template></category> 
+</aiml>

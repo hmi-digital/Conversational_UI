@@ -1,2 +1,0 @@
-﻿#DO NOT REMOVE THIS LINE - This pattern will find the time 12/24 hours with AM PM
-^.*([0-9]|2[0-3])?:?([0-5][0-9])?\s?((?i)(AM|PM)).*$

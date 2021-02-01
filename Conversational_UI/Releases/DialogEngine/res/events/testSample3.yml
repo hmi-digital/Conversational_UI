@@ -1,0 +1,32 @@
+# Details of a event
+---
+tasks :
+    - task :
+        name : EVT_getFeedback
+        label : Feedback
+        itos :
+            - ito :
+                name : getConfirmation
+                label : Confirmation
+                required : true
+                answerType: sys.decision
+                fallbackQuestion: "if BOT was able to answer to your query?"
+            - ito :
+                name : getRating
+                label : Rating
+                required : true
+                answerType: sys.number
+                fallbackQuestion: "how would you rate this on scale of 0-5?"
+        action :
+            type : groovyAction
+            resultMappings :
+                - map :
+                    message : "Thank you for your feedback. Please visit again."
+                    redirectToTask : start
+                    resultVarName : action
+                    # use quotes for key
+                    resultValue : '1'
+            returnAnswer : true
+            utteranceTemplate : null
+            code : 'executionResults.put("action","1")'
+...

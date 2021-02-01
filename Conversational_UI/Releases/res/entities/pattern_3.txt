@@ -1,2 +1,0 @@
-﻿#DO NOT REMOVE THIS LINE - This pattern will find mail id
-^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$

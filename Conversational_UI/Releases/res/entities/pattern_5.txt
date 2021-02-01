@@ -1,2 +1,0 @@
-#DO NOT REMOVE THIS LINE - This pattern will check if the string has only one word
-\b^(\w+)$\b

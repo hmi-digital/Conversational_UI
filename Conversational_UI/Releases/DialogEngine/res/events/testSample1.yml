@@ -1,0 +1,25 @@
+# Details of a event
+---
+tasks :
+    - task :
+        name : EVT_getFeedback
+        label : Feedback
+        itos :
+            - ito :
+                name : getConfirmation
+                label : Confirmation
+                required : true
+                answerType: sys.decision
+                fallbackQuestion: "if BOT was able to answer to your query?"
+            - ito :
+                name : getRating
+                label : Rating
+                required : true
+                answerType: sys.number
+                fallbackQuestion: "how would you rate this on scale of 0-5?"
+        action :
+            type : groovyAction
+            returnAnswer : true
+            utteranceTemplate : "#msg Please visit again."
+            code : 'executionResults.put("msg","Thank you for your feedback.")'
+...

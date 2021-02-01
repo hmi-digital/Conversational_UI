@@ -1,6 +1,0 @@
-#ID,Label,Instruction,Overlay_ID,ImageOrText<*.png>/<text>,Position<x,y,z> in cm,Scale/Size<s>,Rotation(clockwise)<r>,Color<0-255,0-255,0-255,0-255>,Target<name>
-GLUCO_USE,"STEP-1","Please plug in power adapter before taking the reading.",ID-1,"https://192.168.0.101:8080/content/arrow_small.png","5.3,2.76,0",1,90,"",Glucometer
-GLUCO_USE,"STEP-2","Insert a test strip to the bottom of your meter.",ID-2,"https://192.168.0.101:8080/content/arrow_small.png","3.02,8.02,0",1,180,"",Glucometer
-GLUCO_USE,"STEP-3","Screen will display a strip with flashing blood drop to indicate that it is ready.",ID-3,"https://192.168.0.101:8080/content/arrow_small.png","2.02,2.18,0",1,0,"",Glucometer
-GLUCO_USE,"STEP-4","Hold the test strip with your blood drop till the meter beeps.",ID-4,"https://192.168.0.101:8080/content/arrow_small.png","3.02,8.02,0",1,180,"",Glucometer
-GLUCO_USE,"STEP-5","Your blood meter reading will be available now on screen. You may take expert assistance by selecting that option.",ID-5,"Your Reading","4.7,3.72,0",42,0,"255,255,0,255",Glucometer,ID-6,"https://192.168.0.103:8080/content/arrow_small.png","4.1,2.72,0",1,270,"",Glucometer

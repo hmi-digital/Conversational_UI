@@ -6,7 +6,7 @@ Conversational UI takes two forms — 
  - **Chatbots** that allow user to type.
   
 The arrival of chatbots have opened up new realms of the customer engagement. Some of the advantages of Chatbots
--	Ability to engage with the users in a natural and friendly manner 
+- Ability to engage with the users in a natural and friendly manner 
 - Multimodal interface provides ease of interaction 
 - Wasy integration with familiar platforms like Facebook, Skype, MS Teams, Slack etc. through API 
 - Capability to outperform humans with the speed of handling customer queries 
@@ -16,6 +16,14 @@ The arrival of chatbots have opened up new realms of the customer engagement. So
 Overview
 ------------
 This repo provides you the chatbot engine that you can download and customize to your business needs.
+The BOT platform is client-server architecture, client being different channels - browser, mobile App or messenger tools like FaceBook, Slack, MS Teams etc.
+The BOT server support REST APIs as well as WebSocket using Jetty Server as a API gateway. 
+![Alt text](Documents/architecture.png?raw=true "Platform Architecture")
+There are three major components of BOT platform - 
+	- DIALOG Engine (DE) – This is core module, and it maintains the state of dialog with the end user
+	- NLP Engine (NE)– This module identifies intent and entities for given user utterances using advanced NLP algorithms
+	- BROKER Engine (BE)– This is communication module and handles messages between DE and NE and uses Kafka based messaging system. 
+
 Documents can be found at [this](https://github.com/hmi-digital/Conversational_UI/tree/master/Conversational_UI/Documents) location. Quick Start Guide is easy way to get started.
 
 Prerequisite
@@ -23,25 +31,46 @@ Prerequisite
 This system was implemented and tested under Windows, Linux and Mac OS X with the following software 
 
 + Ubuntu 14.10.4 / Mac OS X 10.10 / Windows 10
-+ Java 1.8.0 or higher (all system variables are set JAVA_HOME etc.)
-+ Python 3.6 or higher
-+ pip3 installation of python modules (numpy, scipy, sklearn, nltk, flask, pyOpenSSL)
++ OpenJDK 15 or higher (all system variables are set JAVA_HOME etc.) This should work on Java JDK 1.8 but not tested.
++ Python 3.8 or higher
+
+Download and install **NLP Engine**
+---------------------------------
++ Clone or download this repo and copy files from Releases to D:/ folder (or your prefered location)
++ Locate NLPEngine folder
++ Ensure that you have following folder structure
+    + config
+    + coreNLP
+    + keys
+    + pubsub
+    + requirements.txt
+    + service.py
++ Install all the required python modules from requirements.txt
+
+```
+$ python -m install pip install -r ./requirements.txt
+```
 + Download NLTK data
 ```
-import nltk
+$ python
+>>> import nltk
 >>> nltk.download('punkt')
 >>> nltk.download('stopwords')
 >>> exit()
 ```
-Usage
------
-+ Clone or download the Conversational UI repo and copy files from Releases to D:/HMI folder (or your prefered location)
++  Run **NLP Engine** 
+```
+$ python service.py
+```
+
+Download and install **Dialog Engine**
+------------------------------------
++ Go to DialogEngine folder 
 + Ensure that you have following folder structure
     + lib
     + res
-    + WEB-INF
     + hmi.jar
-+ Open command prompt, go to D:\HMI folder and run following command
++ Open command prompt, go to D:\DialogEngine folder and run following command
 ```
 $ java -jar hmi.jar -h
 usage: bot [-f <arg>] [-h] [-i <console, rest>] [-p <arg>] [-r <arg>] [-s
@@ -59,7 +88,7 @@ usage: bot [-f <arg>] [-h] [-i <console, rest>] [-p <arg>] [-r <arg>] [-s
                                   
 $ java -jar hmi.jar -i rest –p 8080 -r trip_en
 ```
-+ Above command will run a sample trip booking use case ( at D:\HMI\res\dialogues folder)
++ Above command will run a sample trip booking use case (at D:\DialogEngine\res\dialogues folder)
 + Bot engine is now ready to interact at port 8080 and uses inbuilt jetty server
 + Go to chrome browser and enter URL - https://\<Your Machine IP\>:8080/en
   

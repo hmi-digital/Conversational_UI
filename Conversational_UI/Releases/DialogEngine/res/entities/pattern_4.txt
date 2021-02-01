@@ -1,0 +1,2 @@
+#DO NOT REMOVE THIS LINE - This pattern will find date in DD Month YYYY
+\b[0-9]+\s[a-zA-Z0-9-]+\s[0-9-]{4}+\b

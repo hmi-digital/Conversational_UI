@@ -1,2 +1,0 @@
-﻿#DO NOT REMOVE THIS LINE - This pattern will find number with exact 10 digits
-^[0-9]{10}$
