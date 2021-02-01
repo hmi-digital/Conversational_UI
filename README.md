@@ -21,15 +21,15 @@ The BOT platform is client-server architecture, client being different channels 
 
 The BOT server support REST APIs as well as WebSocket using Jetty Server as a API gateway. 
 
-<img src="/Documents/architecture.png" alt="Platform Architecture"/>
+<img src="https://github.com/hmi-digital/Conversational_UI/blob/master/Conversational_UI/Documents/architecture.png" alt="Platform Architecture"/>
 
 There are three major components of BOT platform -
 
-	- DIALOG Engine (DE) – This is core module, and it maintains the state of dialog with the end user
+- DIALOG Engine (DE) – This is core module, and it maintains the state of dialog with the end user
 
-	- NLP Engine (NE)– This module identifies intent and entities for given user utterances using advanced NLP algorithms
-	
-	- BROKER Engine (BE)– This is communication module and handles messages between DE and NE and uses Kafka based messaging system. 
+- NLP Engine (NE)– This module identifies intent and entities for given user utterances using advanced NLP algorithms
+
+- BROKER Engine (BE)– This is communication module and handles messages between DE and NE and uses Kafka based messaging system. 
 
 Documents can be found at [this](https://github.com/hmi-digital/Conversational_UI/tree/master/Conversational_UI/Documents) location. Quick Start Guide is easy way to get started.
 
