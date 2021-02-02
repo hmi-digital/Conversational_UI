@@ -46,12 +46,14 @@ Download and install **NLP Engine**
 + Clone or download this repo and copy files from Releases to D:/ folder (or your prefered location)
 + Locate NLPEngine folder
 + Ensure that you have following folder structure
-     config
-     coreNLP
-     keys
-     pubsub
-     requirements.txt
-     service.py
+
+     - config
+     - coreNLP
+     - keys
+     - pubsub
+     - requirements.txt
+     - service.py
+     
 + Install all the required python modules from requirements.txt
 
 ```
@@ -74,9 +76,11 @@ Download and install **Dialog Engine**
 ------------------------------------
 + Go to DialogEngine folder 
 + Ensure that you have following folder structure
-     lib
-     res
-     hmi.jar
+     
+     - lib
+     - res
+     - hmi.jar
+     
 + Open command prompt, go to D:\DialogEngine folder and run following command
 ```
 $ java -jar hmi.jar -h
